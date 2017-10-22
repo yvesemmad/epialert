@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.yed.adamdjigbe.epialert.MainActivity"
-    android:orientation="horizontal" >
+    android:layout_height="match_parent">
+
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/app_name"
+        android:id="@+id/tv_appName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:singleLine="true" />-->
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +49,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="phone"
                 android:hint="ex: 00 00 00 00"
                 android:ems="10"
                 android:id="@+id/txtphoneNo"
@@ -62,9 +74,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:id="@+id/spinnerDistrict"
-                android:entries="@array/districts_arrays"
-                android:prompt="@string/prompt" />
+                android:id="@+id/spinnerDistrict" />
 
         </LinearLayout>
 
@@ -108,13 +118,33 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="date"
-                android:hint="@string/date_hint"
+                android:hint="ex: 12 12 2017"
                 android:ems="10"
                 android:id="@+id/txtdate"
+                android:layout_weight="0.5" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/ll_hor_form_pad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
                 android:layout_weight="0.5"
-                android:clickable="true"
-                android:focusable="false"
-                 />
+                android:textSize="@dimen/lbl_form_textSize"
+                android:layout_gravity="center_vertical" />
+
+            <android.widget.DatePicker
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/datePicker"
+                android:ems="10"
+                android:layout_weight="0.5"
+                android:hint="ex: 12 12 2017" />
+
 
         </LinearLayout>
 
@@ -135,6 +165,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:inputType="phone"
                 android:hint="ex: Kouassi Yao"
                 android:ems="10"
                 android:id="@+id/txtnomCas"
@@ -181,6 +212,7 @@
 
             <RadioGroup
                 android:orientation="horizontal"
+                android:paddingTop="@dimen/ll_hor_form_pad"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5">
@@ -191,8 +223,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/abr_homme"
                     android:id="@+id/rbHomme"
-                    android:layout_weight="0.5"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_weight="0.5" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -232,8 +263,7 @@
             android:paddingTop="@dimen/ll_hor_form_pad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginTop="15dp">
 
 
             <Button
@@ -256,4 +286,6 @@
 
     </LinearLayout>
 
-</android.widget.ScrollView>
+
+
+</ScrollView>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="lbl_form_textSize">25sp</dimen>
+    <dimen name="ll_hor_form_pad">25dp</dimen>
+
+
+</resources>

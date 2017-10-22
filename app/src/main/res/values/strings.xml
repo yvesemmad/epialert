@@ -1,3 +1,134 @@
 <resources>
     <string name="app_name">EPI Alert</string>
+    <string name="numero">Numéro</string>
+    <string name="district">District</string>
+    <string name="aire">Aire</string>
+    <string name="date">Date</string>
+    <string name="nom_cas">Nom du cas</string>
+    <string name="age">Age</string>
+    <string name="sexe">Sexe</string>
+    <string name="signe">Signe</string>
+    <string name="annuler">Annuler</string>
+    <string name="valider">Valider</string>
+    <string name="homme">Homme</string>
+    <string name="femme">Feme</string>
+    <string name="abr_homme">H</string>
+    <string name="abr_femme">F</string>
+    <string name="prompt">Choisir une valeur</string>
+    <string-array name="districts_arrays">
+        <item>Malaysia</item>
+        <item>United States</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand07</item>
+        <item>New Zealand08</item>
+        <item>New Zealand09</item>
+        <item>New Zealand10</item>
+        <item>New Zealand11</item>
+        <item>New Zealand12</item>
+
+    </string-array>
+    <string-array name="signes_arrays">
+        <item>fb</item>
+        <item>fr</item>
+        <item>fj</item>
+        <item>fs</item>
+        <item>d</item>
+        <item>fn</item>
+        <item>plv</item>
+        <item>tr</item>
+        <item>p</item>
+        
+    </string-array>
+    <string name="date_hint">JJ/MM/yyyy</string>
+    <string-array name="s_districts_array_1">
+        <item>Mercury1</item>
+        <item>Venus1</item>
+        <item>Earth1</item>
+        <item>Mars1</item>
+        <item>Jupiter1</item>
+        <item>Saturn1</item>
+        <item>1Uranus</item>
+        <item>1Neptune</item>
+    </string-array>
+    <string-array name="s_districts_array_2">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+    <string-array name="s_districts_array_3">
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="s_districts_array_4">
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+
+    </string-array>
+    <string-array name="s_districts_array_5">
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="s_districts_array_6">
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="s_districts_array_7">
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="s_districts_array_8">
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+    </string-array>
+    <string-array name="s_districts_array_9">
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
+    </string-array>
+    <string-array name="s_districts_array_10">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+    <string-array name="s_districts_array_11">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+    <string-array name="s_districts_array_0">
+        <item>Mercury0</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+
 </resources>
