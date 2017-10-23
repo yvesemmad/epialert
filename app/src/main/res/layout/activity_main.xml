@@ -240,7 +240,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/annuler"
-                android:id="@+id/button"
+                android:id="@+id/btnAnnuler"
                 android:layout_weight="0.5"
                 android:padding="5dp" />
 
@@ -248,7 +248,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/valider"
-                android:id="@+id/button2"
+                android:id="@+id/btnValider"
                 android:layout_weight="0.5"
                 android:padding="5dp" />
         </LinearLayout>
