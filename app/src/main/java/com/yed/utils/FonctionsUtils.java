@@ -56,5 +56,15 @@ public  class FonctionsUtils {
 
     }
 
+    public String GetEditTextValue(EditText et)  {
+        String text = null;
+        try{
+            text = et.getText().toString();
+        }catch (Exception e){
+            text = "";
+        }
+        return text;
+    }
+
 
 }

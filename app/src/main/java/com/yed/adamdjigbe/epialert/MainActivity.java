@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     Thread CheckForm = new Thread(new Runnable() {
         @Override
         public void run() {
-            //Toast.makeText(getBaseContext(),"ui",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(),"ui", Toast.LENGTH_SHORT).show();
             AsyncCheckValue asyncCheckValue = new AsyncCheckValue();
             asyncCheckValue.execute();
         }
