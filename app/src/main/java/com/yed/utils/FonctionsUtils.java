@@ -52,7 +52,14 @@ public  class FonctionsUtils {
         int yy = myCalendar.get(Calendar.YEAR);
         int mm = myCalendar.get(Calendar.MONTH)+1;
         int dd = myCalendar.get(Calendar.DAY_OF_MONTH);
+        //String string = (sdformat.format(myCalendar.getTime()));
         return (dd+"/"+mm+"/"+yy).toString();
+
+    }
+
+    public Calendar GetCurrentCalendarDateSystem(){
+        final  Calendar myCalendar = Calendar.getInstance();
+        return myCalendar;
 
     }
 

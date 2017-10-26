@@ -111,7 +111,7 @@
                 android:inputType="date"
                 android:hint="@string/date_hint"
                 android:ems="10"
-                android:id="@+id/txtdate"
+                android:id="@+id/txtDate"
                 android:layout_weight="0.5"
                 android:clickable="true"
                 android:focusable="false"
@@ -184,7 +184,8 @@
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5">
+                android:layout_weight="0.5"
+                android:id="@+id/radioGenre">
 
 
                 <RadioButton

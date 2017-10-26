@@ -1,7 +1,9 @@
 package com.yed.classes;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by emmanuel on 23/10/2017.
@@ -13,7 +15,7 @@ public class EpiMessage extends Entitee implements Serializable {
     private String numero;
     private String district;
     private String aire;
-    private Calendar date;
+    private String date;
     private String cas;
     private Integer age;
     private String sexe;
@@ -21,8 +23,9 @@ public class EpiMessage extends Entitee implements Serializable {
 
 
     private String message;
-    private String dateFormat;
-    private Calendar dateSystem;
+    private String dateFormat = "dd/MM/yyyy";
+    SimpleDateFormat sdformat ;
+    private Date dateSystem ;
     private String nom;
     private String prenom;
 
@@ -31,10 +34,10 @@ public class EpiMessage extends Entitee implements Serializable {
     private Aire zone;
 
     public EpiMessage() {
-
+        this.dateSystem = Calendar.getInstance().getTime();
     }
 
-    public EpiMessage(String numero, String district, String aire, Calendar date, String cas, Integer age, String sexe, String signe) {
+    public EpiMessage(String numero, String district, String aire, String date, String cas, Integer age, String sexe, String signe) {
         this.numero = numero;
         this.district = district;
         this.aire = aire;
@@ -43,17 +46,31 @@ public class EpiMessage extends Entitee implements Serializable {
         this.age = age;
         this.sexe = sexe;
         this.signe = signe;
+        this.dateSystem = Calendar.getInstance().getTime();
+    }
+
+    public EpiMessage(String numero, String district, String aire, Calendar date, String cas, Integer age, String sexe, String signe) {
+        this.numero = numero;
+        this.district = district;
+        this.aire = aire;
+        this.date = getDate(date);
+        this.cas = cas;
+        this.age = age;
+        this.sexe = sexe;
+        this.signe = signe;
+        this.dateSystem = Calendar.getInstance().getTime();
     }
 
     public EpiMessage(String numero, String district, Aire aire, Calendar date, String cas, Integer age, String sexe, String signe) {
         this.numero = numero;
         this.district = district;
         this.zone = aire;
-        this.date = date;
+        this.date = getDate(date);
         this.cas = cas;
         this.age = age;
         this.sexe = sexe;
         this.signe = signe;
+        this.dateSystem = Calendar.getInstance().getTime();
     }
 
     public static String getCodeEpiMessage() {
@@ -87,11 +104,16 @@ public class EpiMessage extends Entitee implements Serializable {
         return this;
     }
 
-    public Calendar getDate() {
+    public String getDate() {
         return date;
     }
 
-    public EpiMessage setDate(Calendar date) {
+    public String getDate(Calendar date) {
+        sdformat = new SimpleDateFormat(dateFormat);
+        return (sdformat.format(date.getTime()));
+    }
+
+    public EpiMessage setDate(String date) {
         this.date = date;
         return this;
     }
@@ -168,11 +190,11 @@ public class EpiMessage extends Entitee implements Serializable {
         return this;
     }
     
-    public Calendar getDateSystem() {
+    public Date getDateSystem() {
         return dateSystem;
     }
 
-    public EpiMessage setDateSystem(Calendar dateSystem) {
+    public EpiMessage setDateSystem(Date dateSystem) {
         this.dateSystem = dateSystem;
         return this;
     }
@@ -215,6 +237,7 @@ public class EpiMessage extends Entitee implements Serializable {
     }
 
     public String ConsoliderMessageEpiAlert() {
+        sdformat = new SimpleDateFormat(dateFormat);
         return codeEpiMessage + ";<" +
                 district + ">;<" +
                 aire + ">;<" +
@@ -222,7 +245,7 @@ public class EpiMessage extends Entitee implements Serializable {
                 age + ">;<" +
                 sexe + ">;<" +
                 signe + ">;<" +
-                dateSystem + ">;<" +
+                sdformat.format(dateSystem) + ">;<" +
                 numero +
                 ">";
     }
