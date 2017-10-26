@@ -1,8 +1,10 @@
 package com.yed.adamdjigbe.epialert;
 
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -48,11 +50,39 @@ public class MainActivity extends AppCompatActivity {
         spinnerDistrict.setOnItemSelectedListener(new CustomOnItemSelectedListener(spinnerAire, this));
 
         btnValider = (Button) findViewById(R.id.btnValider);
+        btnValider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CheckForm.run();
+            }
+        });
 
     }
 
-    
+    private class AsyncCheckValue extends AsyncTask<Integer, Void, Void> {
+        @Override
+        protected Void doInBackground(Integer... paramses) {
+            try
+            {
 
+            }catch( Exception e )
+            {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+    }
+
+
+    Thread CheckForm = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            //Toast.makeText(getBaseContext(),"ui",Toast.LENGTH_SHORT).show();
+            AsyncCheckValue asyncCheckValue = new AsyncCheckValue();
+            asyncCheckValue.execute();
+        }
+    });
 
     @Override
     public void onStart() {
