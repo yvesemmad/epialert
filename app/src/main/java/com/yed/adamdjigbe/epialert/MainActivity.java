@@ -1,9 +1,10 @@
 package com.yed.adamdjigbe.epialert;
 
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,13 +13,15 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.yed.classes.EpiMessage;
 import com.yed.listeners.CustomOnItemSelectedListener;
 import com.yed.listeners.SetDateListener;
 
+import static com.yed.utils.FonctionsUtils.ChechFormValues;
+import static com.yed.utils.FonctionsUtils.ConfirmerEpiMessage;
+import static com.yed.utils.FonctionsUtils.FormIsFull;
 import static com.yed.utils.FonctionsUtils.populateSetCurrentDate;
 
 
@@ -30,26 +33,27 @@ public class MainActivity extends AppCompatActivity {
      */
     private GoogleApiClient client;
 
-    EditText txtNumero;
-    EditText txtDate;
-    EditText txtCas;
-    EditText txtAge;
-    Spinner spinnerDistrict;
-    Spinner spinnerAire;
-    Spinner spinnerSigne;
-    RadioGroup radioGenre;
-    Button btnValider;
+    public static EditText txtNumero;
+    public static EditText txtDate;
+    public static EditText txtCas;
+    public static EditText txtAge;
+    public static Spinner spinnerDistrict;
+    public static Spinner spinnerAire;
+    public static Spinner spinnerSigne;
+    public static RadioGroup radioGenre;
+    public static Button btnValider;
+    public static Button btnAnnuler;
 
-    String numero;
-    String district;
-    String aire;
-    String date;
-    String cas;
-    Integer age;
-    String sexe;
-    String signe;
+    public static String numero ="";
+    public static String district ="";
+    public static String aire ="";
+    public static String date ="";
+    public static String cas ="";
+    public static Integer age =0;
+    public static String sexe ="";
+    public static String signe ="";
 
-    EpiMessage epiMessage;
+    public static EpiMessage epiMessage;
 
 
     @Override
@@ -71,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         spinnerDistrict.setOnItemSelectedListener(new CustomOnItemSelectedListener(spinnerAire, this));
         spinnerSigne = (Spinner) findViewById(R.id.spinnerSigne);
         btnValider = (Button) findViewById(R.id.btnValider);
+        btnAnnuler = (Button) findViewById(R.id.btnAnnuler);
 
         ini.run();
     }
@@ -83,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
             populateSetCurrentDate(txtDate);
             radioGenre.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    Toast.makeText(getBaseContext(), sexe, Toast.LENGTH_SHORT).show();
+                    sexe = ((RadioButton)findViewById(checkedId)).getText().toString();
+                    //Toast.makeText(getBaseContext(), sexe, Toast.LENGTH_SHORT).show();
                 }
             });
             btnValider.setOnClickListener(new View.OnClickListener() {
@@ -92,12 +98,18 @@ public class MainActivity extends AppCompatActivity {
                     CheckForm.run();
                 }
             });
+            btnAnnuler.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MainActivity.this.finish();
+                }
+            });
         }
     });
 
     Thread CheckForm = new Thread(new Runnable() {
         @Override
-        public void run() {
+        public void run() throws NullPointerException{
 
             AsyncCheckValue asyncCheckValue = new AsyncCheckValue();
             try{
@@ -108,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 cas = txtCas.getText().toString();
                 signe = spinnerSigne.getSelectedItem().toString() ;
                 age = Integer.valueOf(txtAge.getText().toString()) ;
+                Log.d("rg",String.valueOf(radioGenre.getCheckedRadioButtonId()));
                 sexe = ((RadioButton)findViewById(radioGenre.getCheckedRadioButtonId())).getText().toString();
 
             }catch (NullPointerException ex){
@@ -120,10 +133,22 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+            try {
+                if(FormIsFull()){
+                    epiMessage = new EpiMessage(numero, district, aire, date,cas, age, sexe, signe);
+                    String message = epiMessage.ConsoliderMessageEpiAlert();
+                    //Toast.makeText(getBaseContext(),"FormIsFull", Toast.LENGTH_SHORT).show();
 
-            epiMessage = new EpiMessage(numero, district, aire, date,cas, age, sexe, signe);
-            String message = epiMessage.ConsoliderMessageEpiAlert();
-            Toast.makeText(getBaseContext(),message, Toast.LENGTH_SHORT).show();
+                    ConfirmerEpiMessage(MainActivity.this, epiMessage);
+                }else{
+                    epiMessage = new EpiMessage(numero, district, aire, date,cas, age, sexe, signe);
+                    Toast.makeText(getBaseContext(), Html.fromHtml("<font color=red>Verifier le formulaire</font>"), Toast.LENGTH_SHORT).show();
+                    ChechFormValues(MainActivity.this, epiMessage);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
 
             asyncCheckValue.execute();
         }
@@ -145,43 +170,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.yed.adamdjigbe.epialert/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.yed.adamdjigbe.epialert/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
-    }
 }

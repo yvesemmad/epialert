@@ -250,5 +250,28 @@ public class EpiMessage extends Entitee implements Serializable {
                 ">";
     }
 
+    public String DialogEpiMessageAlert() {
+        sdformat = new SimpleDateFormat(dateFormat);
+        return codeEpiMessage + ";<" +
+                district + ">;<" +
+                aire + ">;<" +
+                date + ">;<" +
+                age + ">;<" +
+                sexe + ">;<" +
+                signe + ">;<" +
+                sdformat.format(dateSystem) + ">;<" +
+                numero +
+                ">";
+    }
+
+    public String getDialogEpiMessageAlert() throws Exception{
+        return "<font color=#A4A4A4><bold>Numero : </bold></font>" + numero + "<br>" +
+                "<font color=#A4A4A4><bold>District : </bold></font>" + district + "<br>" +
+                "<font color=#A4A4A4><bold>Aire : </bold></font>" + aire + "<br>" +
+                "<font color=#A4A4A4><bold>Date : </bold></font>" + date + "<br>" +
+                "<font color=#A4A4A4><bold>Age : </bold></font>" + age + "<br>" +
+                "<font color=#A4A4A4><bold>Sexe : </bold></font>" + sexe + "<br>" +
+                "<font color=#A4A4A4><bold>Signe : </bold></font>" + signe + "<br>" ;
+    }
 
 }

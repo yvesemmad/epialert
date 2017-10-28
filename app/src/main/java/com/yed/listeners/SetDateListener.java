@@ -46,7 +46,6 @@ public class SetDateListener implements View.OnFocusChangeListener, View.OnClick
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-        // TODO Auto-generated method stub
         if(hasFocus){
 
             new DatePickerDialog(ctx, this, myCalendar
